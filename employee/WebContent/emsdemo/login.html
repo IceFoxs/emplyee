@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>login</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css"
+			href="css/style2.css" />
+		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	 <!--  <script type="text/javascript">
+	        function login(e){
+	        	var username = $("#username").val();
+	        	var password = $("#password").val();
+	        	var value ="username="+username+"&password="+password;
+	        	   $.ajax({
+					   type: "POST",
+					   url: "/employee/login.do",
+					   dataType:"json",
+					   data : value,
+					   success: function(msg){
+						   if(msg.status==1)
+						     window.location.href="/employee/emsdemo/emplist.html";
+					   }
+					});		 	
+	        }
+			 $(function(){
+				 showEmp();
+				 
+			 });
+		</script>
+		 -->  
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="top_content">
+					<div id="header">
+						<div id="rightheader">
+							<p>
+								2009/11/20
+								<br />
+							</p>
+						</div>
+						<div id="topheader">
+							<h1 id="title">
+								<a href="#">main</a>
+							</h1>
+						</div>
+						<div id="navigation">
+						</div>
+					</div>
+				<div id="content">
+					<p id="whereami">
+					</p>
+					<h1>
+						登陆
+					</h1>
+					<form action="/employee/login.do" method="post">
+						<table cellpadding="0" cellspacing="0" border="0"
+							class="form_table">
+							<tr>
+								<td valign="middle" align="right">
+									用户名:
+								</td>
+								<td valign="middle" align="left">
+									<input id ="username" type="text" class="inputgri" name="username" />
+								</td>
+							</tr>
+							<tr>
+								<td valign="middle" align="right">
+									密码:
+								</td>
+								<td valign="middle" align="left">
+									<input id="password" type="password" class="inputgri" name="password" />
+								</td>
+							</tr>
+						</table>
+						<p>
+							<input type="submit" class="button" value="Submit &raquo;" />
+						    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="font-size:14px;"href="/employee/emsdemo/regist.html">注册</a>
+						</p>
+					</form>
+				</div>
+			</div>
+			<div id="footer">
+				<div id="footer_bg">
+					ABC@126.com
+			</div>
+			</div>
+		</div>
+	</body>
+</html>

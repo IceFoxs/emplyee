@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>regist</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/style2.css" />
+	     <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	     <script type="text/javascript">
+	        function addUser(){
+	        	
+	        	var username = $("#username").val();
+	        	var password = $("#password").val();
+	        	if(username!=""&&password!==""){
+		        	var value ="username="+username+"&password="+password;
+		        	$.ajax({
+						   type: "POST",
+						   url: "/employee/adduser.do",
+						   dataType:"json",
+						   data:value,
+						   success: function(msg){
+							   if(msg.status==1){
+								     alert("注册成功"); 
+							   }
+							   else{
+									 alert("注册失败"); 
+							   }
+							  window.location.href="/employee/emsdemo/login.html";;
+						 }   
+					   });		
+	        		}
+	         }
+			 $(function(){
+				$("#regist").click(function(){
+					addUser();
+				}); 
+			 });
+			 </script>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="top_content">
+					<div id="header">
+						<div id="rightheader">
+							<p>
+								2009/11/20
+								<br />
+							</p>
+						</div>
+						<div id="topheader">
+							<h1 id="title">
+								<a href="#">main</a>
+							</h1>
+						</div>
+						<div id="navigation">
+						</div>
+					</div>
+				<div id="content">
+					<p id="whereami">
+					</p>
+					<h1>
+						注册
+					</h1>
+						<table cellpadding="0" cellspacing="0" border="0"
+							class="form_table">
+							<tr>
+								<td valign="middle" align="right">
+									用户名:
+								</td>
+								<td valign="middle" align="left">
+									<input id="username" type="text" class="inputgri" name="username" />
+								</td>
+							</tr>
+							<tr>
+								<td valign="middle" align="right">
+									密码:
+								</td>
+								<td valign="middle" align="left">
+									<input  id="password" type="password" class="inputgri" name="password" />
+								</td>
+						</table>
+						<p>
+							<input id="regist" type="submit" class="button" value="Submit &raquo;" />
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="font-size:14px;"href="/employee/emsdemo/login.html">登陆</a>
+						</p>
+				</div>
+			</div>
+			<div id="footer">
+				<div id="footer_bg">
+				ABC@126.com
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

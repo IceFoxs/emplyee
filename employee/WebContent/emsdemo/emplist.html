@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>emplist</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/style2.css" />
+		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript">
+	        function showEmp(){
+	        	$.ajax({
+					   type: "POST",
+					   url: "/employee/showJson.html",
+					   dataType:"json",
+					   success: function(msg){
+						   if(msg != null &&msg.length>0){
+							   $("#tb tbody").html("");
+								var str="";
+								var s1="\"row1\"";
+								var s2="\"row2\"";
+							    for(i=0;i<msg.length;i++){
+							    	var a="";
+							    	(i%2==0)?a=s1:a=s2;
+							    	var temp="id="+msg[i].id+"&name="+msg[i].name+"&salary="+msg[i].salary+"&job="+msg[i].job;
+							        str+="<tr class="+a+">"+
+							    	 "<td>"+msg[i].id+"</td>"+
+					    			  "<td>"+msg[i].name+"</td>"+
+					    			  "<td>"+msg[i].salary+"</td>"+
+					    			  "<td>"+msg[i].job+"</td>"+
+									"<td><a href=\"javascript:void(0)\" data-id="+msg[i].id+" onclick = deleteEmp(this) >delete emp</a>&nbsp;<a href=\"updateEmp.html?"+temp+"\">update emp</a></td>"+
+									+"</tr>"; 
+							    } 
+							    $("#tb tbody").append(str);
+						   }
+					   }
+					});		 	
+	        }
+	        function deleteEmp(e){
+	        	   $.ajax({
+					   type: "POST",
+					   url: "/employee/delete.html",
+					   dataType:"json",
+					   data : "id="+$(e).data("id"),
+					   success: function(msg){
+						   if(msg.status==1)
+						     window.location.href="/employee/emsdemo/emplist.html";
+					   }
+					});		 	
+	        }
+			 $(function(){
+				 showEmp();
+				 
+			 });
+		</script>
+	
+	</head>
+	<body>
+	    
+		<div id="wrap">
+		   
+			<div id="top_content"> 
+				<div id="header">
+					<div id="rightheader">
+						<p>
+							2009/11/20
+							<br />
+						</p>
+					</div>
+					<div id="topheader">
+						<h1 id="title">
+							<a href="#">main</a>
+						</h1>
+					</div>
+					<div id="navigation">
+					</div>
+				</div>
+				<div id="content">
+					<p id="whereami">
+					</p>
+					<h1>
+						Welcome!
+						<a id="logout" href="/employee/logout.html">注销</a>
+					</h1>
+					<table id="tb" class="table">
+					      <thead>
+							 <tr class="table_header">
+								<th>
+									ID
+								</th>
+								<th>
+									Name
+								</th>
+								<th>
+									Salary
+								</th>
+								<th>
+									Job
+								</th>
+								<th>
+									Operation
+								</th>
+							</tr>
+					     </thead>
+					   <tbody>
+						<!--<tr class="row1">
+							<td>
+								1
+							</td>
+							<td>
+								zhangshan
+							</td>
+							<td>
+								20000
+							</td>
+							<td>
+								20
+							</td>
+							<td>
+								<a href="emplist.html">delete emp</a>&nbsp;<a href="updateEmp.html">update emp</a>
+							</td>
+						</tr>
+						<tr class="row2">
+							<td>
+								2
+							</td>
+							<td>
+								lishi
+							</td>
+							<td>
+								20000
+							</td>
+							<td>
+								20
+							</td>
+							<td>
+								<a href="javascript:void(0)">delete emp</a>&nbsp;<a href="updateEmp.html">update emp</a>
+							</td>
+						</tr>
+						-->
+						</tbody>
+					</table>
+					<p>
+						<input type="button" class="button" value="Add Employee" onclick="location='addEmp.html'"/>
+					</p>
+				</div>
+			</div>
+			<div id="footer">
+				<div id="footer_bg">
+				ABC@126.com
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
